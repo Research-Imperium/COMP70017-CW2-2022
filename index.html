@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tic-Tac-Toe</title>
+  
+  
+  
+      <link rel="stylesheet" href="style.css">
+
+  
+</head>
+
+<body>
+
+  <html>
+    <head>
+        <title>TIC TAC TOE</title>
+    </head>
+    <body>
+
+        Enter your opponent's wallet address to create a new game: <br><br>
+
+        <input type="text" id="opponentAdress" placeholder="Opponent Address"></input>
+        <button id="new-game">New Game</button> <br><br>
+        <div id="newGameAddress"></div>        
+
+        Or to join an existing game enter the contract address below: <br><br>
+        <input type="text" id="contract-ID-tojoin" placeholder="Contract Address"></input>
+        <button id="join-game">Join Game</button>
+
+        <div class="container">
+            <h1>Tic-Tac-Toe <div id="player"></div> </h1>
+            <ul id="game">
+                <!-- first row -->
+                <li data-pos="0"></li>
+                <li data-pos="1"></li>
+                <li data-pos="2"></li>
+                <!-- second row -->
+                <li data-pos="3"></li>
+                <li data-pos="4"></li>
+                <li data-pos="5"></li>
+                <!-- third row -->
+                <li data-pos="6"></li>
+                <li data-pos="7"></li> 
+                <li data-pos="8"></li>
+            </ul>
+            
+            <!-- Game Messages -->
+            <div id="game-messages"></div>
+
+            <div id="whos-turn"></div>
+                
+            </aside>
+        </div>
+    </body>
+</html>
+  
+  
+    <script src="./node_modules/ethjs/dist/ethjs.js"></script>
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+    <script  src="index.js"></script>
+
+
+
+
+</body>
+
+</html>
