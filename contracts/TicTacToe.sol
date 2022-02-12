@@ -3,6 +3,19 @@ pragma solidity ^0.4.24;
 
 /**
  * @title TicTacToe contract
+  _threeInALine() : 1 point
+
+  _getStatus() : 4 points
+
+  _checkStatus() : 1 point
+
+  myTurn() : 1 point
+
+  _myTurn() : 1 point
+
+  validMove() : 1 point
+
+  _validMove() : 1 point
  **/
 contract TicTacToe {
     address[2] public players;
@@ -49,6 +62,11 @@ contract TicTacToe {
       **/    
     function _threeInALine(uint a, uint b, uint c) private view returns (bool){
         /*Please complete the code here.*/
+        if (a == b && b == c) {
+          return true;
+        } else {
+          return false;
+        }
     }
 
     /**
@@ -58,6 +76,7 @@ contract TicTacToe {
      */
     function _getStatus(uint pos) private view returns (uint) {
         /*Please complete the code here.*/
+        return status;
     }
 
     /**
@@ -67,6 +86,8 @@ contract TicTacToe {
      */
     modifier _checkStatus(uint pos) {
         /*Please complete the code here.*/
+        require(status == 0);
+        _;
     }
 
     /**
@@ -75,6 +96,7 @@ contract TicTacToe {
      */
     function myTurn() public view returns (bool) {
        /*Please complete the code here.*/
+       return turn == 1;
     }
 
     /**
@@ -83,6 +105,9 @@ contract TicTacToe {
      */
     modifier _myTurn() {
       /*Please complete the code here.*/
+      require(turn == 1);
+      turn = 2;
+      _;
     }
 
     /**
@@ -100,6 +125,7 @@ contract TicTacToe {
      */
     modifier _validMove(uint pos) {
       /*Please complete the code here.*/
+      _;
     }
 
     /**
