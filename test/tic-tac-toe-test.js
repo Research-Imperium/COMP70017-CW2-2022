@@ -45,17 +45,31 @@ describe("TicTacToe", function() {
       expect(await ticTacToe.status()).to.equal(0);
     });
 
+    // it("Player1 should win", async function() {
+    //   await ticTacToe.connect(player1).move(1);
+    //   expect((await ticTacToe.showBoard())[1]).to.equal(1);
+    //   expect(await ticTacToe.status()).to.equal(0);
+
+    //   await ticTacToe.connect(player2).move(4);
+    //   expect((await ticTacToe.showBoard())[4]).to.equal(2);
+    //   expect(await ticTacToe.status()).to.equal(0);
+
+    //   await ticTacToe.connect(player1).move(2);
+    //   expect((await ticTacToe.showBoard())[2]).to.equal(1);
+    //   expect(await ticTacToe.status()).to.equal(1);
+    // });
+
     it("Player1 should win", async function() {
-      await ticTacToe.connect(player1).move(1);
-      expect((await ticTacToe.showBoard())[1]).to.equal(1);
+      await ticTacToe.connect(player1).move(4);
+      expect((await ticTacToe.showBoard())[4]).to.equal(1);
       expect(await ticTacToe.status()).to.equal(0);
 
-      await ticTacToe.connect(player2).move(4);
-      expect((await ticTacToe.showBoard())[4]).to.equal(2);
+      await ticTacToe.connect(player2).move(5);
+      expect((await ticTacToe.showBoard())[5]).to.equal(2);
       expect(await ticTacToe.status()).to.equal(0);
 
-      await ticTacToe.connect(player1).move(2);
-      expect((await ticTacToe.showBoard())[2]).to.equal(1);
+      await ticTacToe.connect(player1).move(8);
+      expect((await ticTacToe.showBoard())[8]).to.equal(1);
       expect(await ticTacToe.status()).to.equal(1);
     });
 
