@@ -56,7 +56,9 @@ var checkWin = function(){
         var win;
         TicTacToe.status().then(function(res){
             win = res[0].words[0];
-            console.log(win)
+            console.log("response is: ", res);
+
+            console.log(win);
             var displayResult;
             if (win>0){
                 if (win==3){
@@ -73,11 +75,7 @@ var checkWin = function(){
                 }
             }
         });
-        if (win>0){
-            return true;
-        } else {
-            return false;
-        }
+        return win > 0;
     } else { 
         return false;
     }
@@ -88,6 +86,7 @@ var render = function(){
     //renders the board byt fetching the state of the board from the blockchain
     if (typeof TicTacToe != 'undefined'){
         TicTacToe.showBoard().then(function(res){
+            console.log("res is: ", res);
             for (var i = 0; i < 9; i++){
                 var state = res[0][i].words[0];
                 if (state>0){
@@ -153,13 +152,13 @@ var joinGameHandler = function(){
 var clickHandler = function() {
 
     //called when the user clicks a cell on the board
-
     if (typeof TicTacToe != 'undefined'){
         if (checkWin()){
             return;
         }
         var target = this.getAttribute('data-pos');
         TicTacToe.validMove(target).then(function(res){
+            console.log("res is: ", res)
             if (res[0]) {
                 TicTacToe.turn().then(function(res) {
                     if (res[0].words[0] == player) {
