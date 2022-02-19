@@ -59,7 +59,44 @@ contract TicTacToe {
      */
     function _getStatus(uint pos) private view returns (uint) {
         /*Please complete the code here.*/
-        return status;
+        if (pos == 0) {
+            if (_threeInALine(0, 1, 2) || _threeInALine(0, 4, 8) || _threeInALine(0, 3, 6)) {
+                return turn;
+            }
+        } else if (pos == 1) {
+            if (_threeInALine(0, 1, 2) || _threeInALine(1, 4, 7)) {
+                return turn;
+            }
+        } else if (pos == 2) {
+            if (_threeInALine(0, 1, 2) || _threeInALine(2, 5, 8) || _threeInALine(2, 4, 6)) {
+                return turn;
+            }
+        } else if (pos == 3) {
+            if (_threeInALine(3, 4, 5) || _threeInALine(0, 3, 6)) {
+                return turn;
+            }
+        } else if (pos == 4) {
+            if (_threeInALine(3, 4, 5) || _threeInALine(1, 4, 7) || _threeInALine(0, 4, 8) || _threeInALine(2, 4, 6)) {
+                return turn;
+            }
+        } else if (pos == 5) {
+            if (_threeInALine(3, 4, 5) || _threeInALine(2, 5, 8)) {
+                return turn;
+            }
+        } else if (pos == 6) {
+            if (_threeInALine(6, 7, 8) || _threeInALine(0, 3, 6) || _threeInALine(6, 4, 2)) {
+                return turn;
+            }
+        } else if (pos == 7) {
+            if (_threeInALine(6, 7, 8) || _threeInALine(1, 4, 7)) {
+                return turn;
+            }
+        } else if (pos == 8) {
+            if (_threeInALine(6, 7, 8) || _threeInALine(0, 4, 8) || _threeInALine(2, 5, 8)) {
+                return turn;
+            }
+        }
+        return status;   /* In case no line was formed, we return the previous status */
     }
 
     /**
@@ -71,45 +108,7 @@ contract TicTacToe {
         /*Please complete the code here.*/
         require(status == 0);
         /* We update the status according to if the player who did the last move won or not */
-        if (pos == 0) {
-            if (_threeInALine(0, 1, 2) || _threeInALine(0, 4, 8) || _threeInALine(0, 3, 6)) {
-                status = turn;
-            } else {
-                status = 0;
-            }
-        } else if (pos == 1) {
-            if (_threeInALine(0, 1, 2) || _threeInALine(1, 4, 7)) {
-                status = turn;
-            }
-        } else if (pos == 2) {
-            if (_threeInALine(0, 1, 2) || _threeInALine(2, 5, 8) || _threeInALine(2, 4, 6)) {
-                status = turn;
-            }
-        } else if (pos == 3) {
-            if (_threeInALine(3, 4, 5) || _threeInALine(0, 3, 6)) {
-                status = turn;
-            }
-        } else if (pos == 4) {
-            if (_threeInALine(3, 4, 5) || _threeInALine(1, 4, 7) || _threeInALine(0, 4, 8) || _threeInALine(2, 4, 6)) {
-                status = turn;
-            }
-        } else if (pos == 5) {
-            if (_threeInALine(3, 4, 5) || _threeInALine(2, 5, 8)) {
-                status = turn;
-            }
-        } else if (pos == 6) {
-            if (_threeInALine(6, 7, 8) || _threeInALine(0, 3, 6) || _threeInALine(6, 4, 2)) {
-                status = turn;
-            }
-        } else if (pos == 7) {
-            if (_threeInALine(6, 7, 8) || _threeInALine(1, 4, 7)) {
-                status = turn;
-            }
-        } else if (pos == 8) {
-            if (_threeInALine(6, 7, 8) || _threeInALine(0, 4, 8) || _threeInALine(2, 5, 8)) {
-                status = turn;
-            }
-        }
+        status = _getStatus(pos);
         _;
     }
 
@@ -151,13 +150,10 @@ contract TicTacToe {
         if ( 0 <= pos && pos < 9) { /* Check if the player places within the board */
             if (board[pos] != 1 && board[pos] != 2) {   /* Check if the pos is free, i.e. has not been chosen before */
                 board[pos] = turn;
-            } else {
-                return false;
+                return true;
             }
-            return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
